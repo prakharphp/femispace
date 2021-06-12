@@ -10,36 +10,37 @@ class Gender(models.IntegerChoices):
     Male = 1
     Female = 2
     Other = 3
-#
-# #
-# # class User(AbstractUser):
-# #     tag = models.ManyToManyField(TagMaster, blank=True)
-# #     gender = models.PositiveSmallIntegerField(choices=Gender.choices, default=Gender.Male)
-#
-#
-# class AppUserManager(BaseUserManager):
-#
-#     def create_user(self, email, password, **extra_fields):
-#         if not email:
-#             raise ValueError('The Email must be set')
-#         email = self.normalize_email(email)
-#         user = self.model(email=email, **extra_fields)
-#         user.set_password(password)
-#         user.save()
-#         return user
-#
-#     def create_superuser(self, email, password, **extra_fields):
-#
-#         extra_fields.setdefault('is_staff', True)
-#         extra_fields.setdefault('is_superuser', True)
-#         extra_fields.setdefault('is_active', True)
-#
-#         if extra_fields.get('is_staff') is not True:
-#             raise ValueError('Superuser must have is_staff=True.')
-#         if extra_fields.get('is_superuser') is not True:
-#             raise ValueError('Superuser must have is_superuser=True.')
-#         return self.create_user(email, password, **extra_fields)
-# #
+
+
+class AppUserManager(BaseUserManager):
+
+    def _create_user(self, email, password, **extra_fields):
+        """
+        Creates and saves a User with the given email and password.
+        """
+        if not email:
+            raise ValueError('The given email must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_user(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(email, password, **extra_fields)
+
+    def create_superuser(self, email, password, **extra_fields):
+
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_active', True)
+
+        extra_fields.pop('tag')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+
+        return self._create_user(email, password, **extra_fields)
 
 
 class User(AbstractUser):
@@ -63,7 +64,7 @@ class User(AbstractUser):
         related_query_name="user_permissions_query",
     )
     username = None
-    id = models.UUIDField(primary_key=True, editable=False)
+    # id = models.UUIDField(primary_key=True, editable=False)
     email = models.EmailField(unique=True)
     first_name = models.CharField( max_length=150, blank=False, null=False)
     last_name = models.CharField( max_length=150, blank=False, null=False)
@@ -74,7 +75,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number', 'tag', 'gender']
 
-    # objects = AppUserManager()
+    objects = AppUserManager()
 
     def _str_(self):
         return self.email
