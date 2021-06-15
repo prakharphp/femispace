@@ -57,6 +57,7 @@ class Program(models.Model):
     days = models.ManyToManyField(Day)
     preferred_for = models.ManyToManyField('health.WellnessArea', blank=True)
     tag = models.ManyToManyField(TagMaster, blank=True)
+    duration = models.CharField(max_length=50, default=7)
 
     @property
     def day_count(self):
@@ -153,3 +154,10 @@ class MeditationActivity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     meditation = None
+
+
+class UserPlan(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    program = models.OneToOneField(Program, on_delete=models.CASCADE)
+    start_date = models.DateField()
+    end_date = models.DateField()

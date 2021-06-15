@@ -79,3 +79,90 @@ class User(AbstractUser):
 
     def _str_(self):
         return self.email
+#Pop up for user
+
+
+class Mood(models.IntegerChoices):
+
+    Good = 1
+    Bad = 2
+    Other = 3
+
+
+class TestChoice(models.IntegerChoices):
+    Not_available = 1
+    Positive = 2
+    Negative = 3
+
+
+class TestChoiceLevel(models.IntegerChoices):
+    Not_available = 1
+    Low = 2
+    Medium = 3
+    High = 4
+
+
+class FerningChoices(models.IntegerChoices):
+    Not_available = 1
+    none = 2
+    Partial = 3
+    Full = 4
+
+
+class IvfChoices(models.IntegerChoices):
+    Not_available = 1
+    Retrieval = 2
+    transfer = 3
+    freezing = 4
+
+
+class InserminationChoices(models.IntegerChoices):
+    Not_available = 1
+    IUI = 2
+    ICSI = 3
+    IVI = 4
+    HCG = 5
+    HSG_Exam = 6
+    SHG_Exam = 7
+
+
+class UserHealth(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_period_started = models.BooleanField(default=False)
+    is_ovulation = models.BooleanField(default=False)
+    temperature = models.PositiveSmallIntegerField()
+    tem_unit = models.CharField(max_length= 5)
+    weight = models.PositiveSmallIntegerField()
+    weight_unit = models.CharField(max_length= 5)
+    sleep_min = models.IntegerField()
+    mood = models.PositiveSmallIntegerField(choices=Mood.choices, default=Mood.Good)
+    cervical_fluid = models.CharField(max_length=10)
+    period = models.CharField(verbose_name= 'period/spotting', max_length=10)
+
+    test_devices_Std_Opk = models.PositiveSmallIntegerField(choices=TestChoice.choices, default=TestChoice.Not_available)
+    Advance_Opk = models.PositiveSmallIntegerField(choices=TestChoiceLevel.choices, default=TestChoiceLevel.Not_available)
+    pregnancy_test = models.PositiveSmallIntegerField(choices=TestChoice.choices, default=TestChoice.Not_available)
+    Blood = models.PositiveSmallIntegerField(choices=TestChoice.choices, default=TestChoice.Not_available)
+    progesterone_test = models.PositiveSmallIntegerField(choices=TestChoice.choices, default=TestChoice.Not_available)
+
+    Ferning_Microscope = models.PositiveSmallIntegerField(choices=FerningChoices.choices, default=FerningChoices.Not_available)
+    ivf = models.PositiveSmallIntegerField(choices=IvfChoices.choices, default=IvfChoices.Not_available)
+    Insermination = models.PositiveSmallIntegerField(choices=InserminationChoices.choices, default=InserminationChoices.Not_available)
+
+    osteoporosis = models.DateField()
+    heart_disease = models.DateField()
+    from_uninary_incontinence_diabetes = models.DateField()
+    to_uninary_incontinence_diabetes = models.DateField()
+    stroke = models.DateField()
+
+    biomaker_result =models.PositiveSmallIntegerField()
+    biomaker_result_unit = models.CharField(max_length=10)
+    biomaker_date = models.DateField()
+    biomaker_result_period_day = models.CharField(max_length=5, default=0)
+    progesterone_result = models.PositiveSmallIntegerField()
+    progesterone_result_unit = models.CharField(max_length=10)
+    progesterone_date = models.DateField()
+    progesterone_result_period_day = models.CharField(max_length=5, default=0)
+
+    comment = models.TextField(max_length=200)
+    symptoms_conditions = models.ManyToManyField(TagMaster, blank=True)
