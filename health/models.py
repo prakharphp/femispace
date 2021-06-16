@@ -49,3 +49,32 @@ class AverageCycle(models.Model):
 # class Messages():
 #class Lerning areas
 #class exercise
+
+
+class Medication(models.Model):
+    title = models.CharField(max_length=30)
+    image = models.URLField()
+    category = models.CharField(max_length=20)
+    created_by = models.CharField(max_length=10)
+    duration_min = models.PositiveSmallIntegerField()
+    no_lesson = models.PositiveSmallIntegerField()
+    heading = models.CharField(max_length=50)
+    introduction = models.TextField()
+    biology = models.TextField()
+    how_to_measure = models.TextField()
+
+
+class Harmones(models.Model):
+    title = models.CharField(max_length=30)
+    image = models.URLField()
+    category = models.CharField(max_length=20)
+    created_by = models.CharField(max_length=10)
+    duration_min = models.PositiveSmallIntegerField()
+    number_lesson = models.PositiveSmallIntegerField()
+    heading = models.CharField(max_length=50)
+    introduction = models.TextField()
+    biology = models.TextField()
+    how_to_measure = models.TextField()
+
+
+# add quiz in harmones

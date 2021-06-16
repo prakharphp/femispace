@@ -164,3 +164,17 @@ class UserPlan(models.Model):
     program = models.ForeignKey(Program, on_delete=models.CASCADE)
     start_date = models.DateField()
     asssigned_date = models.DateField()
+
+
+class FrequencyChoices(models.IntegerChoices):
+    Daily = 1
+    Weekly = 2
+    Monthly = 3
+
+
+class AddCustomActivity(models.Model):
+    category = models.ForeignKey(ActivityMaster, on_delete=models.CASCADE)
+    activity_name = models.CharField(max_length=20)
+    stat_date = models.DateField()
+    duration_in_days = models.CharField(max_length=50)
+    target_frequency = models.PositiveSmallIntegerField(choices=FrequencyChoices.choices, default=FrequencyChoices.Monthly)

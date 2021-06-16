@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User
+from .models import User, UserHealth
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.utils.translation import gettext, gettext_lazy as _
 
@@ -30,4 +30,4 @@ class CustomUserAdmin(admin.ModelAdmin):
     search_fields = ('first_name', 'last_name', 'email')
 
 
-# admin.site.register(User, CustomUserAdmin)
+admin.site.register(UserHealth)

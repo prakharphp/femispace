@@ -28,3 +28,5 @@ class AverageCycleAdmin(admin.ModelAdmin):
 admin.site.register(WellnessArea, WellnessAreaAdmin)
 admin.site.register(MonthCycle, MonthCycleAdmin)
 admin.site.register(AverageCycle, AverageCycleAdmin)
+admin.site.register(Harmones)
+admin.site.register(Medication)

@@ -131,7 +131,7 @@ class UserHealth(models.Model):
     is_period_started = models.BooleanField(default=False)
     is_ovulation = models.BooleanField(default=False)
     temperature = models.PositiveSmallIntegerField()
-    tem_unit = models.CharField(max_length= 5)
+    temperature_unit = models.CharField(max_length= 5)
     weight = models.PositiveSmallIntegerField()
     weight_unit = models.CharField(max_length= 5)
     sleep_min = models.IntegerField()
