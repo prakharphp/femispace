@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+from master.models import TagMaster
 
 
 class WellnessArea(models.Model):
@@ -21,6 +22,7 @@ class MonthCycle(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now=True)
     feeling = models.ManyToManyField('health.WellnessArea', blank=True)
+    tag = models.ManyToManyField(TagMaster, blank=True)
 
     def __str__(self):
         return f"{self.user.username} on {self.date}"

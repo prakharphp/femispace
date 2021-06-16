@@ -52,3 +52,5 @@ admin.site.register(ExerciseActivity)
 admin.site.register(DrinkingWaterActivity)
 admin.site.register(SugarIntakeActivity)
 admin.site.register(MeditationActivity)
+admin.site.register(UserPlan)
+

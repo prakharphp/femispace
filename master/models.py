@@ -3,7 +3,7 @@ from django.db import models
 
 class TagMasterChoices(models.IntegerChoices):
     symptoms = 1
-    tag = 2
+    Cycle = 2
 
 
 class TagMaster(models.Model):
