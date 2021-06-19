@@ -79,6 +79,7 @@ class User(AbstractUser):
 
     def _str_(self):
         return self.email
+
 #Pop up for user
 
 
