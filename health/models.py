@@ -78,3 +78,15 @@ class Harmones(models.Model):
 
 
 # add quiz in harmones
+
+
+class HealthModule(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    on_medication = models.BooleanField(default=False)
+    doctors_name = models.CharField(max_length=20)
+    prescrption = models.FileField(blank=True, null=True)
+    had_surgery = models.BooleanField(default=False)
+    diabetes = models.BooleanField(default=False)
+    heart_issues = models.BooleanField(default=False)
+    mental_issue = models.BooleanField(default=False)
+    additonal_info = models.TextField()

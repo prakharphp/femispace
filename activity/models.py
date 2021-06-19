@@ -52,24 +52,6 @@ class Day(models.Model):
         return self.title
 
 
-class Program(models.Model):
-    title = models.CharField(max_length=50)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
-    days = models.ManyToManyField(Day)
-    preferred_for = models.ManyToManyField('health.WellnessArea', blank=True)
-    tag = models.ManyToManyField(TagMaster, blank=True)
-    duration_in_days = models.CharField(max_length=50, default=7)
-    # start_date = models.DateField()
-
-
-    @property
-    def day_count(self):
-        return len(self.days.all()) if self.days else 0
-
-    def __str__(self):
-        return self.title
-
-
 class EatRainbowMaster(models.Model):
     title = models.CharField(max_length=50)
     red_serving = models.PositiveSmallIntegerField(default=0)
@@ -138,6 +120,18 @@ class DrinkingWaterActivity(models.Model):
     tag = models.ManyToManyField(TagMaster, blank=True)
 
 
+class DrinkingActivityMaster(models.Model):
+    water = models.PositiveSmallIntegerField(default=5)
+    soft_drink = models.PositiveSmallIntegerField(default=0)
+    smoothie = models.PositiveSmallIntegerField(default=0)
+    ice_tea = models.PositiveSmallIntegerField(default=0)
+    fruit_juice = models.PositiveSmallIntegerField(default=0)
+    coffee = models.PositiveSmallIntegerField(default=0)
+    bear = models.PositiveSmallIntegerField(default=0)
+    comment = models.TextField(blank=True, null=True)
+    tag = models.ManyToManyField(TagMaster, blank=True)
+
+
 class SugarIntakeActivity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
@@ -153,10 +147,51 @@ class SugarIntakeActivity(models.Model):
     tag = models.ManyToManyField(TagMaster, blank=True)
 
 
+class SugarIntakeActivityMaster(models.Model):
+    fruits = models.ManyToManyField(Food, blank=True, related_name="fruits")
+    dried_fruits = models.ManyToManyField(Food, blank=True, related_name="Dry_Fruits")
+    sweet_veggie = models.ManyToManyField(Food, blank=True, related_name="sweet_vaggies")
+    drink_juices = models.ManyToManyField(Food, blank=True, related_name="drink_juice")
+    dessert_snack = models.ManyToManyField(Food, blank=True, related_name="dessert_snacks")
+    sugar_intake = models.PositiveSmallIntegerField(default=0)
+    calories_gained = models.PositiveSmallIntegerField(default=0)
+    comments = models.TextField(blank=True, null=True)
+
+
+class MeditationMaster(models.Model):
+    title = models.CharField(max_length=50)
+    image = models.ImageField()
+    url = models.URLField()
+    Description = models.TextField()
+
+
 class MeditationActivity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     meditation = None
+
+
+class Program(models.Model):
+    title = models.CharField(max_length=50)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    days = models.ManyToManyField(Day)
+    preferred_for = models.ManyToManyField('health.WellnessArea', blank=True)
+    tag = models.ManyToManyField(TagMaster, blank=True)
+    duration_in_days = models.CharField(max_length=50, default=7)
+    # start_date = models.DateField()
+    eat_rainbow = models.ForeignKey(EatRainbowMaster, on_delete=models.CASCADE, blank=True, null=True)
+    exercise = models.ForeignKey(ExerciseActivityMaster, on_delete=models.CASCADE, blank=True, null=True)
+    drinking_exercise = models.ForeignKey(DrinkingActivityMaster, on_delete=models.CASCADE, blank=True, null=True)
+    sugar_intake = models.ForeignKey(SugarIntakeActivityMaster, on_delete=models.CASCADE, blank=True, null=True)
+    meditation = models.ForeignKey(MeditationActivity, on_delete=models.CASCADE, blank=True, null=True)
+
+
+    @property
+    def day_count(self):
+        return len(self.days.all()) if self.days else 0
+
+    def __str__(self):
+        return self.title
 
 
 class UserPlan(models.Model):
