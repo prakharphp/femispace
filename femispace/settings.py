@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'health',
     'master',
     'food',
+    'notification',
 ]
 
 MIDDLEWARE = [
