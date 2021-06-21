@@ -19,6 +19,10 @@ class ExerciseMaster(models.Model):
     image_link = models.URLField(blank=True, null=True)
     duration_min = models.PositiveSmallIntegerField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    # difficulty_level
+    # ordering
+    # tag_master
+
 
     def __str__(self):
         return '%s' % self.title
@@ -31,6 +35,7 @@ class ExerciseActivityMaster(models.Model):
     duration_min = models.PositiveSmallIntegerField(blank=True, null=True)
     calories_burn = models.PositiveIntegerField(blank=True, null=True)
     tag = models.ManyToManyField(TagMaster, blank=True)
+    # day_order
 
     def __str__(self):
         return '%s' % self.name
