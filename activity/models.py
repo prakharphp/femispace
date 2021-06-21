@@ -183,7 +183,7 @@ class Program(models.Model):
     exercise = models.ForeignKey(ExerciseActivityMaster, on_delete=models.CASCADE, blank=True, null=True)
     drinking_exercise = models.ForeignKey(DrinkingActivityMaster, on_delete=models.CASCADE, blank=True, null=True)
     sugar_intake = models.ForeignKey(SugarIntakeActivityMaster, on_delete=models.CASCADE, blank=True, null=True)
-    meditation = models.ForeignKey(MeditationActivity, on_delete=models.CASCADE, blank=True, null=True)
+    meditation = models.ForeignKey(MeditationMaster, on_delete=models.CASCADE, blank=True, null=True)
 
 
     @property
