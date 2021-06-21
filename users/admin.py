@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User, UserHealth
+from .models import User, UserHealth, DailyPopUp
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.utils.translation import gettext, gettext_lazy as _
 
@@ -31,3 +31,4 @@ class CustomUserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(UserHealth)
+admin.site.register(DailyPopUp)

@@ -127,8 +127,8 @@ class InserminationChoices(models.IntegerChoices):
     SHG_Exam = 7
 
 
-class UserHealth(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+class DailyPopUp(models.Model):
+    date = models.DateField(auto_now=True)
     is_period_started = models.BooleanField(default=False)
     is_ovulation = models.BooleanField(default=False)
     temperature = models.PositiveSmallIntegerField()
@@ -138,8 +138,11 @@ class UserHealth(models.Model):
     sleep_min = models.IntegerField()
     mood = models.PositiveSmallIntegerField(choices=Mood.choices, default=Mood.Good)
     cervical_fluid = models.CharField(max_length=10)
-    period = models.CharField(verbose_name= 'period/spotting', max_length=10)
+    period_spotting = models.CharField(verbose_name= 'period/spotting', max_length=10)
 
+
+class UserHealth(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     test_devices_Std_Opk = models.PositiveSmallIntegerField(choices=TestChoice.choices, default=TestChoice.Not_available)
     Advance_Opk = models.PositiveSmallIntegerField(choices=TestChoiceLevel.choices, default=TestChoiceLevel.Not_available)
     pregnancy_test = models.PositiveSmallIntegerField(choices=TestChoice.choices, default=TestChoice.Not_available)
