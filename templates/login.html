@@ -5,7 +5,8 @@
     <title>Login Page</title>
 </head>
 <body>
-    <form method="post">
+    <form method="post" action="{%url 'login_request'%}">
+        {% csrf_token %}
         <label for="email" ><b>Email</b></label>
         <input type="text" placeholder="Enter Username" name="email" required><br>
         <label for="password" ><b>Password</b></label>

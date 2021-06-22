@@ -5,7 +5,8 @@
     <title>Welcome to Health module</title>
 </head>
 <body>
-<form>
+<form method="post" action="{%url 'health_module'%}">
+    {% csrf_token %}
          <label for="on_medication" ><b>on_medication</b></label>
          <input type="text"  name="on_medication" ><br>
          <label for="doctors_name" ><b>doctor's name</b></label>
@@ -23,6 +24,7 @@
         <label for="additonal_info" ><b>additonal_info</b></label>
         <input type="text"  name="additonal_info" ><br>
         <button type="submit">submit</button>
+</form>
 
 
 

@@ -16,17 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import DefaultRouter
-# from rest_framework_simplejwt.views import (
-#     TokenObtainPairView,
-#     TokenRefreshView,
-# )
+from .import views
 from.views import UserApiViewSet
 
 router = DefaultRouter()
 router.register(r"user-api", UserApiViewSet, basename="user-api")
 urlpatterns = [
-    # g path(' ', views.index, name="index"),
-    # path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    # path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+     path('user_login', views.user_login, name="user_login"),
+     path('login_request', views.login_request, name="login_request"),
+     path('health_module', views.health_module, name="health_module"),
+     path('eat_activity', views.eat_activity, name="eat_activity"),
 
 ] + router.urls

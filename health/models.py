@@ -91,3 +91,6 @@ class HealthModule(models.Model):
     heart_issues = models.BooleanField(default=False)
     mental_issue = models.BooleanField(default=False)
     additonal_info = models.TextField()
+
+    def __str__(self):
+        return self.user
