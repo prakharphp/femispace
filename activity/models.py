@@ -18,7 +18,7 @@ class EatRainbowActivity(models.Model):
     eat_less = models.ManyToManyField(Food, blank=True, related_name="eat_less_user")
     eat_avoid = models.ManyToManyField(Food, verbose_name="Avoid eat", blank=True, related_name="eat_avoid_user")
     tag = models.ManyToManyField(TagMaster, blank=True)
-    comment = models.TextField()
+    comment = models.TextField(blank=True, null=True)
 
 
 class FeelingAfterExercise(models.TextChoices):

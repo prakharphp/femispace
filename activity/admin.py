@@ -27,9 +27,17 @@ class DayAdmin(admin.ModelAdmin):
 #         fields = ["title", "breakfast_meal", "brunch_meal", "lunch_meal", "eve_snacks_meal", "morning_exercise"]
 
 
+class EatRAinbowActivityAdmin(admin.ModelAdmin):
+    # form = DayForm
+    list_display = ["date", "user", "is_actual", "red_serving", "cream_serving", "yellow_serving", "kiwi_serving",
+                    "blue_serving", "green_serving"]
+
+    class Meta:
+        model = EatRainbowActivity
+
 
 admin.site.register(Day, DayAdmin)
-admin.site.register(EatRainbowActivity)
+admin.site.register(EatRainbowActivity, EatRAinbowActivityAdmin)
 admin.site.register(ExerciseActivity)
 admin.site.register(DrinkingWaterActivity)
 admin.site.register(SugarIntakeActivity)

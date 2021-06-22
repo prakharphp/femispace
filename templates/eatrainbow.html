@@ -5,8 +5,10 @@
     <title>Welcome to Health module</title>
 </head>
 <body>
-<form method="post" action="{}">
+<form method="post" action="{%url 'eat_activity'%}">
     {% csrf_token %}
+        <label for="date" >Date</label>
+        <input type="date" name="date"></br>
          <label for="red_serving" ><b>red_serving</b></label>
          <input type="text"  name="red_serving" ><br>
          <label for="cream_serving" ><b>cream_serving's name</b></label>
@@ -19,8 +21,10 @@
         <input type="text"  name="blue_serving" ><br>
         <label for="green_serving" ><b>green_serving</b></label>
         <input type="text"  name="green_serving" ><br>
+        <label for="comment" ><b>comment</b></label>
+        <input type="text" name="comment" ><br>
         <label for="enjoy_regular">Enjoy_regular:</label>
-        <select name="enjoy_regular" multiple >
+        <select name="enjoy_regular" multiple="multiple">
             {% for x in food%}
             <option value="{{x.id}}"> {{x.name}}</option>
             {% endfor %}
