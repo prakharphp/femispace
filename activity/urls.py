@@ -14,10 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from rest_framework.routers import DefaultRouter
+from.views import EatActivityApiViewSet
+from .import views
 
+router = DefaultRouter()
+router.register(r"eat-activity-api", EatActivityApiViewSet, basename="eat-activity-api")
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include("users.urls")),
-    path('', include("activity.urls")),
-]
+        path('eat_activity', views.eat_activity, name="eat_activity"),
+
+] + router.urls
