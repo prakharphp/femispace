@@ -23,5 +23,6 @@ router = DefaultRouter()
 router.register(r"eat-activity-api", EatActivityApiViewSet, basename="eat-activity-api")
 urlpatterns = [
         path('eat_activity', views.eat_activity, name="eat_activity"),
+        path('get_date_user',  EatActivityApiViewSet.get_date_user, name="get_date_user"),
 
 ] + router.urls

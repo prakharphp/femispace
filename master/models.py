@@ -393,6 +393,7 @@ class ExerciseActivityMaster(models.Model):
 
 class EatRainbowMaster(models.Model):
     title = models.CharField(max_length=50)
+    order = models.PositiveSmallIntegerField(blank=True, null=True)
     red_serving = models.PositiveSmallIntegerField(default=0)
     cream_serving = models.PositiveSmallIntegerField(default=0)
     yellow_serving = models.PositiveSmallIntegerField(default=0)
@@ -410,6 +411,7 @@ class EatRainbowMaster(models.Model):
 
 
 class DrinkingActivityMaster(models.Model):
+    order = models.PositiveSmallIntegerField(blank=True, null=True)
     water = models.PositiveSmallIntegerField(default=5)
     soft_drink = models.PositiveSmallIntegerField(default=0)
     smoothie = models.PositiveSmallIntegerField(default=0)
@@ -422,6 +424,7 @@ class DrinkingActivityMaster(models.Model):
 
 
 class SugarIntakeActivityMaster(models.Model):
+    order = models.PositiveSmallIntegerField(blank=True, null=True)
     fruits = models.ManyToManyField(Food, blank=True, related_name="fruits")
     dried_fruits = models.ManyToManyField(Food, blank=True, related_name="Dry_Fruits")
     sweet_veggie = models.ManyToManyField(Food, blank=True, related_name="sweet_vaggies")
@@ -436,6 +439,7 @@ class MeditationMaster(models.Model):
     title = models.CharField(max_length=50)
     image = models.ImageField()
     url = models.URLField()
+    order = models.PositiveSmallIntegerField(blank=True, null=True)
     Description = models.TextField()
 
 

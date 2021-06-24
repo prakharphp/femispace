@@ -6,6 +6,7 @@ from users.models import User
 class EatRainbowActivity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
+    previous_date_data = models.ForeignKey(EatRainbowMaster, on_delete=models.CASCADE, blank=True, null=True)
     is_actual = models.BooleanField(default=False)
     red_serving = models.PositiveSmallIntegerField(default=0)
     cream_serving = models.PositiveSmallIntegerField(default=0)
@@ -33,6 +34,7 @@ class ExerciseActivity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     is_actual = models.BooleanField(default=False)
+    previous_date_data = models.ForeignKey(ExerciseActivityMaster, on_delete=models.CASCADE, blank=True, null=True)
     exercise = models.ManyToManyField(ExerciseMaster, blank=True)
     duration = models.PositiveSmallIntegerField(default=90)
     met = models.FloatField(default=0)
@@ -45,6 +47,7 @@ class ExerciseActivity(models.Model):
 class DrinkingWaterActivity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
+    previous_date_data = models.ForeignKey(DrinkingActivityMaster, on_delete=models.CASCADE, blank=True, null=True)
     is_actual = models.BooleanField(default=False)
     water = models.PositiveSmallIntegerField(default=5)
     soft_drink = models.PositiveSmallIntegerField(default=0)
@@ -61,6 +64,7 @@ class SugarIntakeActivity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     is_actual = models.BooleanField(default=False)
+    previous_date_data = models.ForeignKey(SugarIntakeActivityMaster, on_delete=models.CASCADE, blank=True, null=True)
     fruit = models.ManyToManyField(Food, blank=True, related_name="fruit_user")
     dried_fruit = models.ManyToManyField(Food, blank=True, related_name="dry_fruit_user")
     sweet_veggies = models.ManyToManyField(Food, blank=True, related_name="sweet_vaggies_user")
@@ -74,6 +78,7 @@ class SugarIntakeActivity(models.Model):
 
 class MeditationActivity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    previous_date_data = models.ForeignKey(MeditationMaster, on_delete=models.CASCADE, blank=True, null=True)
     date = models.DateField()
     meditation = None
 

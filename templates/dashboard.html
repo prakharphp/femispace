@@ -6,10 +6,21 @@
 </head>
 <body>
  {% csrf_token %}
+ <form id="mySelect" onchange="myFunction()">
+<label for="date">
+    <input type="date" >
+</label>
+ </form>
+
 <a href="{%url 'health_module'%}">User Module</a>
- <a href="{%url 'health_module'%}">User Module</a>
-
-
+ <a href="{%url 'eat_activity'%}">Eat Activity</a>
 
 </body>
+<script>
+    function myFunction() {
+                var x = document.getElementById("mySelect").value;
+
+                }
+
+</script>
 </html>

@@ -2,9 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Exercise</title>
+    <title>Welcome to Health module</title>
 </head>
 <body>
+<form method="post" action="{%url 'eat_activity'%}">
+    {% csrf_token %}
+        <label for="date" >Date</label>
+        <input type="date" name="date"></br>
+        <label for="exercise">exercise:</label>
+        <select name="exercise" multiple="multiple">
+            {% for x in exercise%}
+            <option value="{{x.id}}"> {{x.name}}</option>
+            {% endfor %}
+        </select><br>
+        <label for="duration" >Duration</label>
+        <input type="text" name="duration"></br>
+        <label for="met" >Target Met</label>
+        <input type="text" name="met"></br>
+        <label for="calories" >calories burn</label>
+        <input type="text" name="calories"></br>
+         <label for="feeling">feeling:</label>
+        <select name="feeling">
+         <option value="1">GREAT_AND_EASY</option>
+         <option value="2">NORMAL</option>
+         <option value="3">HARD</option>
+         <option value="4">EXHAUSTED</option>
+         <option value="5">SICK</option>
+        </select><br>
+        <label for="comment" >comment</label>
+        <input type="text" name="comment"></br>
+        <label for="tag" >tag</label>
+        <select name="tag" multiple>
+            {% for y in tag%}
+            <option value="{{y.id}}"> {{y.name}}</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">submit</button>
 
+</form>
 </body>
 </html>
