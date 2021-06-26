@@ -6,7 +6,7 @@ from users.models import User
 class EatRainbowActivity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
-    previous_date_data = models.ForeignKey(EatRainbowMaster, on_delete=models.CASCADE, blank=True, null=True)
+    master = models.ForeignKey(EatRainbowMaster, on_delete=models.CASCADE, blank=True, null=True)
     is_actual = models.BooleanField(default=False)
     red_serving = models.PositiveSmallIntegerField(default=0)
     cream_serving = models.PositiveSmallIntegerField(default=0)

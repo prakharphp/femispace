@@ -393,7 +393,7 @@ class ExerciseActivityMaster(models.Model):
 
 class EatRainbowMaster(models.Model):
     title = models.CharField(max_length=50)
-    order = models.PositiveSmallIntegerField(blank=True, null=True)
+    sequence = models.PositiveSmallIntegerField(blank=True, null=True)
     red_serving = models.PositiveSmallIntegerField(default=0)
     cream_serving = models.PositiveSmallIntegerField(default=0)
     yellow_serving = models.PositiveSmallIntegerField(default=0)
