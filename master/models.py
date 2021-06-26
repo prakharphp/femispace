@@ -371,7 +371,7 @@ class ExerciseMaster(models.Model):
     duration_min = models.PositiveSmallIntegerField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     difficulty_level = models.PositiveSmallIntegerField(blank=True, null=True, help_text="Please enter the difficulty level for the exercise")
-    ordering = models.PositiveSmallIntegerField(blank=True, null=True)
+    sequence = models.PositiveSmallIntegerField(blank=True, null=True)
     tag_master = models.ManyToManyField(TagMaster, blank=True)
 
     def __str__(self):
@@ -411,7 +411,7 @@ class EatRainbowMaster(models.Model):
 
 
 class DrinkingActivityMaster(models.Model):
-    order = models.PositiveSmallIntegerField(blank=True, null=True)
+    sequence = models.PositiveSmallIntegerField(blank=True, null=True)
     water = models.PositiveSmallIntegerField(default=5)
     soft_drink = models.PositiveSmallIntegerField(default=0)
     smoothie = models.PositiveSmallIntegerField(default=0)
@@ -424,7 +424,7 @@ class DrinkingActivityMaster(models.Model):
 
 
 class SugarIntakeActivityMaster(models.Model):
-    order = models.PositiveSmallIntegerField(blank=True, null=True)
+    sequence = models.PositiveSmallIntegerField(blank=True, null=True)
     fruits = models.ManyToManyField(Food, blank=True, related_name="fruits")
     dried_fruits = models.ManyToManyField(Food, blank=True, related_name="Dry_Fruits")
     sweet_veggie = models.ManyToManyField(Food, blank=True, related_name="sweet_vaggies")
@@ -439,7 +439,7 @@ class MeditationMaster(models.Model):
     title = models.CharField(max_length=50)
     image = models.ImageField()
     url = models.URLField()
-    order = models.PositiveSmallIntegerField(blank=True, null=True)
+    sequence = models.PositiveSmallIntegerField(blank=True, null=True)
     Description = models.TextField()
 
 
