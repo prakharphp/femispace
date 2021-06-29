@@ -12,3 +12,9 @@ def get_previous_date(date_str):
     day = dt.timedelta(days=1)
     reduce_date = date_object - day
     return reduce_date.strftime("%Y-%m-%d")
+
+
+def get_difference_from_current_date(date_str):
+    date_object = datetime.strptime(date_str, "%Y-%m-%d")
+    date = datetime.now() - date_object
+    return date

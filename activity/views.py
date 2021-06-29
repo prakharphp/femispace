@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -7,7 +9,7 @@ from . import serializers
 from activity.models import EatRainbowActivity
 from master.models import Food, TagMaster, ExerciseActivityMaster, EatRainbowMaster
 from users.models import User
-from .utils import get_previous_date
+from .utils import get_previous_date, get_difference_from_current_date
 
 
 class EatActivityApiViewSet(viewsets.ModelViewSet):
@@ -30,6 +32,9 @@ class EatActivityApiViewSet(viewsets.ModelViewSet):
         3. match order with activity users previous date
 
 
+        if previous date not exist
+        eat rainbow object filter by user and its last element
+        eat rainbow object.master.sequence
 
         :param request:
         :return:
@@ -37,16 +42,24 @@ class EatActivityApiViewSet(viewsets.ModelViewSet):
         user = request.query_params.get('user_id')
         date = request.query_params.get('date')
         eat_rainbow_object = EatRainbowActivity.objects.filter(date=date, user=user)
+
         if not eat_rainbow_object:
             prev_date = get_previous_date(date)
             user_object = User.objects.get(id=user)
             previous_object_data = EatRainbowActivity.objects.filter(date=prev_date, user=user)
-            ## todo handle previous date not exist
-            previous_sequence = previous_object_data.first().master.sequence
             user_tag = user_object.tag.filter().values_list('id', flat=True)
             eat_masters = EatRainbowMaster.objects.filter(tag__id__in=user_tag).distinct().order_by("sequence")
-
-            eat_rainbow_master_object = eat_masters.filter(sequence=(previous_sequence+1)).first()
+            ## todo handle previous date not exist
+            if not previous_object_data:
+                previous_object_data = EatRainbowActivity.objects.filter(user=user).order_by("date")
+                previous_date = previous_object_data.date
+                previous_date_object = datetime.strptime(previous_date, "%Y-%m-%d")
+                previous_sequence = previous_object_data.last().master.sequence
+                diffrence_current_date = get_difference_from_current_date(previous_date_object)
+                eat_rainbow_master_object = eat_masters.filter(sequence=(previous_sequence + diffrence_current_date)).first()
+            else:
+                previous_sequence = previous_object_data.first().master.sequence
+                eat_rainbow_master_object = eat_masters.filter(sequence=(previous_sequence+1)).first()
             if not eat_rainbow_master_object:
                 eat_rainbow_master_object = eat_masters.first()
 
@@ -71,26 +84,13 @@ class EatActivityApiViewSet(viewsets.ModelViewSet):
                                                           'cream_serving':eat_rainbow_master_object.cream_serving, 'yellow_serving': eat_rainbow_master_object.yellow_serving,
                                                           'kiwi_serving': eat_rainbow_master_object.kiwi_serving, 'blue_serving': eat_rainbow_master_object.blue_serving,
                                                           'green_serving':  eat_rainbow_master_object.green_serving})
-            # enjoy_regular = Food.objects.filter(id__in=eat_rainbow_master_object.enjoy_regular)
-            # if not created:
-            #     eat_rainbow_object.enjoy_regular.clear()
-            #     eat_rainbow_object.eat_avoid.clear()
-            #     eat_rainbow_object.eat_less.clear()
-            #     eat_rainbow_object.eat_more.clear()
-            #
-            # eat_rainbow_object.enjoy_regular = eat_rainbow_master_object.enjoy_regular
-            # eat_rainbow_object.eat_avoid = eat_rainbow_master_object.eat_avoid
-            # eat_rainbow_object.eat_less = eat_rainbow_master_object.enjoy_regular
-            # eat_rainbow_object.eat_more = eat_rainbow_master_object.eat_more
 
             eat_rainbow_object.enjoy_regular.set(eat_rainbow_master_object.enjoy_regular.all(), clear=True)
+            eat_rainbow_object.eat_more.set(eat_rainbow_master_object.eat_more.all(), clear=True)
+            eat_rainbow_object.eat_less.set(eat_rainbow_master_object.eat_less.all(), clear=True)
+            eat_rainbow_object.eat_avoid.set(eat_rainbow_master_object.eat_avoid.all(), clear=True)
+            eat_rainbow_object.tag.set(eat_rainbow_master_object.tag.all(), clear=True)
             eat_rainbow_object.save()
-            # eat_more = Food.objects.filter(id__in=eat_rainbow_master_object.eat_more)
-            # eat_rainbow_object.eat_more.set(eat_more, clear=True)
-            # eat_less = Food.objects.filter(id__in=eat_rainbow_master_object.eat_less)
-            # eat_rainbow_object.eat_less.set(eat_less, clear=True)
-            # eat_avoid = Food.objects.filter(id__in=eat_rainbow_master_object.eat_avoid)
-            # eat_rainbow_object.eat_avoid.set(eat_avoid, clear=True)
         else:
             eat_rainbow_object = eat_rainbow_object.first()
 
@@ -103,23 +103,6 @@ class EatActivityApiViewSet(viewsets.ModelViewSet):
         }
 
         return Response(response_data)
-
-    # @action(
-    #     detail=False,
-    #     methods=['POST'],
-    #     url_path=r"save-actual-eating-habbit",
-    #     serializer_class=serializers.EatActivitySerializer
-    # )
-    #
-    # def get_eating_habit_by_date(self, request):
-    #     user = request.user
-    #     is_actual = request.data.get('is_actual')
-    #
-    #
-
-
-
-
 
 
 def eat_activity(request):
