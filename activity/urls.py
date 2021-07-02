@@ -22,7 +22,7 @@ from .import views
 router = DefaultRouter()
 router.register(r"eat-activity-api", EatActivityApiViewSet, basename="eat-activity-api")
 urlpatterns = [
-        path('eat_activity', views.eat_activity, name="eat_activity"),
+        # path('eat_activity', views.eat_activity, name="eat_activity"),
         path('get_date_user',  EatActivityApiViewSet.get_eating_habit_by_date, name="get_date_user"),
 
 ] + router.urls

@@ -22,5 +22,5 @@ from .import views
 router = DefaultRouter()
 router.register(r"month-cycle-api", MonthCycleApiViewSet, basename="month-cycle")
 urlpatterns = [
-
+        path('user_month_cycle', MonthCycleApiViewSet.get_cycle_by_date, name="user_month_cycle"),
 ] + router.urls
