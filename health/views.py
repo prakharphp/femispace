@@ -49,7 +49,7 @@ class MonthCycleApiViewSet(viewsets.ModelViewSet):
             "year": year,
             "user": user,
             "date_object": date_object,
-            "dict": dict,
+            "results": dict,
         }
 
         return Response(response_data)

@@ -63,23 +63,6 @@ class EatActivityApiViewSet(viewsets.ModelViewSet):
             if not eat_rainbow_master_object:
                 eat_rainbow_master_object = eat_masters.first()
 
-            # previous_assigned_data = previous_object_data.previous_date_data
-            # order = previous_assigned_data.order
-            # # count = EatRainbowMaster.objects.aggregate(Max('order'))
-            # # if order != count.get('order__max'):
-            # if eat_masters.last() == previous_assigned_data:
-            #     eat_rainbow_master_object = EatRainbowActivity.objects.create(previous_date_data=eat_masters.first(), date=date, user=user_object)
-            # else:
-            #     eat_rainbow_master_object = EatRainbowMaster.objects.filter(order=(order+1)).order_by("order").first()
-            #     previous_assigned_data = EatRainbowActivity.objects.create(previous_date_data=eat_rainbow_master_object, date=date, user=user_object)
-
-            # else:
-            #     order = 1
-            #     eat_rainbow_master_object = EatRainbowMaster.objects.filter(order=order).order_by("order").first()
-
-            # fetch from master
-            # create record in activity
-            # store in eat_rainbow_object
             eat_rainbow_object, created = EatRainbowActivity.objects.update_or_create(user=user_object, date=date, defaults={'master':eat_rainbow_master_object,'red_serving': eat_rainbow_master_object.red_serving,
                                                           'cream_serving':eat_rainbow_master_object.cream_serving, 'yellow_serving': eat_rainbow_master_object.yellow_serving,
                                                           'kiwi_serving': eat_rainbow_master_object.kiwi_serving, 'blue_serving': eat_rainbow_master_object.blue_serving,
