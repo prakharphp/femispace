@@ -1,0 +1,137 @@
+@charset 'UTF-8';
+/* Slider */
+.slick-loading .slick-list
+{
+    background: #fff url('./ajax-loader.gif') center center no-repeat;
+}
+
+/* Icons */
+@font-face
+{
+    font-family: 'slick';
+    font-weight: normal;
+    font-style: normal;
+    src: url('./fonts/slick.eot');
+    src: url('./fonts/slick.eot?#iefix') format('embedded-opentype'), url('./fonts/slick.woff') format('woff'), url('./fonts/slick.ttf') format('truetype'), url('./fonts/slick.svg#slick') format('svg');
+}
+/* Arrows */
+.testimonialouter .slick-prev,
+.testimonialouter .slick-next
+{
+    font-size: 0;
+    line-height: 0;
+
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+
+    color: transparent;
+    border: none !important;
+    outline: none !important;
+    background: transparent;
+}
+.testimonialouter .slick-prev:hover,
+.testimonialouter .slick-prev:focus,
+.testimonialouter .slick-next:hover,
+.testimonialouter .slick-next:focus
+{
+    color: transparent;
+    outline: none;
+    background: transparent;
+}
+.testimonialouter .slick-prev:hover:before,
+.testimonialouter .slick-prev:focus:before,
+.testimonialouter .slick-next:hover:before,
+.testimonialouter .slick-next:focus:before
+{
+    opacity: 1;
+}
+.testimonialouter .slick-prev.slick-disabled:before,
+.testimonialouter .slick-next.slick-disabled:before
+{
+    opacity: .25;
+}
+
+.testimonialouter .slick-prev:before,
+.testimonialouter .slick-next:before
+{
+    
+    font-size: 12px;
+    line-height: 1;
+    color:black;
+    opacity: .75;
+    border:1px solid lightgray;
+    border-radius: 50%;
+    /* width:30px !important;
+    height: 30px !important; */
+    padding: 5px !important;
+    padding-left:8px !important;
+    padding-right:8px !important;
+    background-color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.testimonialouter .slick-prev
+{
+    right: 20px;
+    top:-45px;
+    margin-right: 35px;
+   
+}
+[dir='rtl'] .slick-prev
+{
+    right: -25px;
+    left: auto;
+}
+.testimonialouter .slick-prev:before
+{
+    content: '<';
+
+}
+[dir='rtl'] .testimonialouter .slick-prev:before
+{
+    content: '<';
+   
+}
+
+.testimonialouter .slick-next
+{
+    right: -40px;
+    top:-45px;
+    margin-right: 35px;
+}
+[dir='rtl'] .testimonialouter .slick-next
+{
+    right: auto;
+    left: -25px;
+}
+.testimonialouter .slick-next:before
+{
+    content: '>';
+}
+[dir='rtl'] .testimonialouter .slick-next:before
+{
+    content: '>';
+}
+
+/* Dots */
+.testimonialouter
+{
+    margin-bottom: 30px;
+}
+
+.slick-dots
+{
+    display: none !important;
+}

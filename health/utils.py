@@ -16,3 +16,23 @@ def get_all_dates_in_month(year, month):
         x = current_date.strftime("%Y-%m-%d")
         list_of_dates.append(x)
     return list_of_dates
+
+
+def MonthCycle_algo(date):
+    if is_menstruation == True:
+        menstruation_phase = date + datetime.timedelta(days=5)
+        follicular_phase = menstruation_phase + datetime.timedelta(days=8)
+        ovalution_phase = follicular_phase + datetime.timedelta(days=3)
+        lutreal_phase = ovalution_phase + datetime.timedelta(days=12)
+    elif is_follicular == True:
+        follicular_phase = date + datetime.timedelta(days=8)
+        ovalution_phase = follicular_phase + datetime.timedelta(days=3)
+        lutreal_phase = ovalution_phase + datetime.timedelta(days=12)
+        menstruation_phase = lutreal_phase + datetime.timedelta(days=5)
+    elif is_ovulation == True:
+        ovalution_phase = date + datetime.timedelta(days=3)
+        lutreal_phase = ovalution_phase + datetime.timedelta(days=12)
+        menstruation_phase = lutreal_phase + datetime.timedelta(days=5)
+        follicular_phase = menstruation_phase + datetime.timedelta(days=8)
+
+    pass

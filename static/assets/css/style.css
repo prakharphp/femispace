@@ -1,0 +1,136 @@
+
+@media (max-width:991.98px) {
+    .padding {
+        padding: 1.5rem
+    }
+}
+
+@media (max-width:767.98px) {
+    .padding {
+        padding: 1rem
+    }
+}
+
+.padding {
+    padding: 5rem
+}
+
+.cardi {
+    position: relative;
+    display: flex;
+    width: 350px;    
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    box-shadow: 0px 3px 50px #0000000A;
+border: 1px solid #E9E9E9;
+border-radius: 20px;
+   
+}
+
+.cardi .cardbodyi {
+    padding: 7px;
+}
+
+
+.testimonial_video_start_icon{
+width: 35px;
+height: 35px;
+position: absolute;
+top: 27%;
+left: 42%;
+padding-top: 12px;
+padding-left: 14px;
+background-color: #0000006E;             
+color: white;           
+border-radius: 50%;  
+font-size: 12px;
+cursor: pointer;
+}
+
+p {
+    font-size: 0.875rem;
+    margin-bottom: .5rem;
+    line-height: 1.5rem
+}
+
+h4 {
+    line-height: .2 !important
+}
+
+.profile {
+    margin-top: 16px;
+    margin-left: 11px
+}
+
+.profile-pic {
+    width: 58px
+}
+.brunch{
+    margin-left: -12px; 
+    margin-top: -10px; 
+    font-size: 10px; 
+    float: left; 
+    color: #CCAE15; 
+    font: normal normal 600 TT Commons;
+}
+.healthy{
+    float:left; 
+    font-size: 14px; 
+    margin-left: -15px; 
+    font: normal normal 600 TT Commons; 
+    color: #2B2B2B; font-weight: 600;
+    }    
+
+    @media screen and (min-width: 1237px) 
+    {        
+        .healthy{            
+            margin-left: -14px !important;             
+            }
+            .corn {
+                margin-left: -5px !important;        
+            }
+    }
+
+    @media screen and (min-width: 1387px) 
+    {        
+        .healthy{            
+            margin-left: -39px !important;    
+            margin-top: 10px !important;          
+            }
+            .corn {
+                margin-left: -31px !important;        
+            }
+            .brunch{
+                margin-left: 0px;              
+            }
+    }
+
+    @media screen and (max-width: 1023px) 
+    {        
+        .healthy{            
+            margin-left: -43px !important;    
+            margin-top: 10px !important;          
+            }
+    }
+
+.cust-name {
+    font-size: 18px
+}
+
+.cust-profession {
+    font-size: 10px
+}
+
+.items {
+    width: 90%;
+    margin: 0px auto;
+    margin-top: 100px
+}
+
+.slick-slide {
+    margin: 10px
+}
+
