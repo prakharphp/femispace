@@ -39,9 +39,10 @@ class MonthCycleApiViewSet(viewsets.ModelViewSet):
         for i in range(len(date_by_month)):
             cycle_obj_by_date = user_cycle_detail_by_date.filter(date=date_by_month[i])
             if not cycle_obj_by_date.first():
-                average_cycle = AverageCycle.objects.get(user=user)
-                mesturation_phase = date + dt.timedelta(days=average_cycle.menstruation_days)
-                follicular_phase = mesturation_phase + dt.timedelta(days=average_cycle.follicular_days)
+                pass
+                # average_cycle = AverageCycle.objects.get(user=user)
+                # mesturation_phase = date + dt.timedelta(days=average_cycle.menstruation_days)
+                # follicular_phase = mesturation_phase + dt.timedelta(days=average_cycle.follicular_days)
 
             else:
                 pass

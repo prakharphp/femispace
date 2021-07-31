@@ -1,40 +1,20 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/html">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Instructor Dashboard</title>
-      <!-- Prevent the demo from appearing in search engines -->
-      <meta name="robots" content="noindex">
-      <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
-      <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
-      <link rel="stylesheet" type="text/css" href="{% static 'assets/css/popup/popup.css' %}">
-      <link rel="stylesheet" type="text/css" href="{% static 'assets/css/slick-theme.css' %}">
-      <link rel="stylesheet" type="text/css" href="{% static 'assets/css/slick.css' %}">
 
-      <!-- App CSS -->
-      <link rel="stylesheet" type="text/css" href="{% static 'assets/css/app.css' %}">
-      <link rel="stylesheet" type="text/css" href="{% static 'assets/css/app.rtl.css' %}">
-      <!-- Material Design Icons -->
-      <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendor-material-icons.css' %}">
-      <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendor-material-icons.rtl.css' %}">
-      <!-- Font Awesome FREE Icons -->
-      <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendor-fontawesome-free.css' %}">
-      <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendor-fontawesome-free.rtl.css' %}">
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-   </head>
-   <body class="layout-default" style="background: #F8F8F8;" oncontextmenu='return false' class='snippet-body'>
+{% block content %}
       <div id="popup1" class="overlay">
          <div class="popup">
             <p class="eatRainbow">Eat Rainbow</p>
+            <form method="post" id="eat_form">
             <p class="date_on_popup">
                <img src="{% static 'assets/images/icons/arrow_left.png' %}" alt="arrow_left_icon" class="arrow_left">
-               <span class="popup_date">22 March 2021</span>
+                  <span class="popup_date">
+                     {% csrf_token %}
+                     <input type="date" name="eat_date" onchange="this.form.submit()" value="{{eat_date}}">
+                  </span>
                <img src="{% static 'assets/images/icons/arrow_right.png' %}" alt="arrow_right_icon" class="arrow_right">
             </p>
+            </form>
             <a class="close closeBtn" href="">&times;</a>
             <div class="content">
                <p style="clear: both;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam Lorem ipsum m <span class="read_more_btn">Read More</span></p>
@@ -50,33 +30,33 @@
                <p class="add_new_servings">Add New Servings</p>
                <div class="numbers_section">
                   <img src="{% static 'assets/images/icons/plus.png' %}" alt="plus_icon" class="plus">
-                  <p class="number_2">2</p>
+                  <p class="number_2">{{eat_rainbow_object.red_serving}} </p>
                   <img src="{% static 'assets/images/icons/minus.png' %}" alt="minus_icon" class="minus">
 
                </div>
                <div class="numbers_section">
                   <img src="{% static 'assets/images/icons/plus.png' %}" alt="plus_icon" class="plus">
-                  <p class="number_1">1</p>
+                  <p class="number_1">{{eat_rainbow_object.cream_serving}}</p>
                   <img src="{% static 'assets/images/icons/minus.png' %}" alt="minus_icon" class="minus">
                </div>
                <div class="numbers_section">
                   <img src="{% static 'assets/images/icons/plus.png' %}" alt="plus_icon" class="plus">
-                  <p class="number_0">0</p>
+                  <p class="number_0">{{eat_rainbow_object.yellow_serving}}</p>
                   <img src="{% static 'assets/images/icons/minus.png' %}" alt="minus_icon" class="minus">
                </div>
                <div class="numbers_section">
                   <img src="{% static 'assets/images/icons/plus.png' %}" alt="plus_icon" class="plus">
-                  <p class="second_number_2">2</p>
+                  <p class="second_number_2">{{eat_rainbow_object.kiwi_serving}}</p>
                   <img src="{% static 'assets/images/icons/minus.png' %}" alt="minus_icon" class="minus">
                </div>
                <div class="numbers_section">
                   <img src="{% static 'assets/images/icons/plus.png' %}" alt="plus_icon" class="plus">
-                  <p class="second_number_0">0</p>
+                  <p class="second_number_0">{{eat_rainbow_object.blue_serving}}</p>
                  <img src="{% static 'assets/images/icons/minus.png' %}" alt="minus_icon" class="minus">
                </div>
                <div class="numbers_section">
                   <img src="{% static 'assets/images/icons/plus.png' %}" alt="plus_icon" class="plus">
-                  <p class="third_number_0">0</p>
+                  <p class="third_number_0">{{eat_rainbow_object.green_serving}}</p>
                   <img src="{% static 'assets/images/icons/minus.png' %}" alt="minus_icon" class="minus">
                </div>
                <form class="popup_window_form">
@@ -1053,44 +1033,6 @@
             </div>
          </div>
       </div>
-      <script>
-         function fieldDropdown1() {
-            var x = document.getElementById("dropdown_data_1");
-            if (x.style.display === "block")
-            {
-               x.style.display = "none";
-               document.getElementById("faangledown").style.display = "inline-block";
-               document.getElementById("faangleup").style.display = "none";
-               document.getElementById("dropdown_data_2").style.display = "none";
-            }
-            else
-            {
-               x.style.display = "block";
-               document.getElementById("faangledown").style.display = "none";
-               document.getElementById("faangleup").style.display = "inline-block";
-               document.getElementById("dropdown_data_2").style.display = "none";
-               document.getElementById("secondangledown").style.display = "inline-block";
-               document.getElementById("secondangleup").style.display = "none";
-            }
-         };
-         function fieldDropdown2() {
-            var x = document.getElementById("dropdown_data_2");
-            if (x.style.display === "block")
-            {
-               x.style.display = "none";
-               document.getElementById("secondangledown").style.display = "inline-block";
-               document.getElementById("secondangleup").style.display = "none";
-            }
-            else {
-               x.style.display = "block";
-               document.getElementById("dropdown_data_1").style.display = "none";
-               document.getElementById("faangledown").style.display = "inline-block";
-               document.getElementById("faangleup").style.display = "none";
-               document.getElementById("secondangleup").style.display = "inline-block";
-               document.getElementById("secondangledown").style.display = "none";
-            }
-         }
-      </script>
       <!-- fifth popup ended -->
       <!-- sixth popup started -->
       <div id="popup6" class="sixth_popup_overlay">
@@ -1791,19 +1733,4 @@
       </div>
       <!-- // END header-layout -->     
       <!-- App Settings FAB -->     
-      <!-- jQuery -->
-      <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-      <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
-      <script type='text/javascript' src="{% static 'assets/js/testimonial.js' %}"></script>
-      <script type='text/javascript' src="{% static 'assets/js/slick.min.js' %}"></script>
-      <!-- DOM Factory -->
-      <script type='text/javascript' src="{% static 'assets/js/dom-factory.js' %}"></script>
-      <!-- MDK -->
-      <script type='text/javascript' src="{% static 'assets/js/material-design-kit.js' %}"></script>
-      <!-- App -->
-      <script type='text/javascript' src="{% static 'assets/js/app.js' %}"></script>
-      <script type='text/javascript' src="{% static 'assets/js/popup/slick.min.js' %}"></script>
-      <script type='text/javascript' src="{% static 'assets/js/popup/testimonial.js' %}"></script>
-      <script type='text/javascript' src="{% static 'assets/js/bundle.min.js' %}"></script>
-   </body>
-</html>
+{% endblock %}
