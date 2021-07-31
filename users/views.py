@@ -11,7 +11,7 @@ from users.models import User
 from . import serializers
 from django.contrib import messages
 from health.models import HealthModule
-import datetime
+from datetime import date
 
 
 class UserApiViewSet(viewsets.ModelViewSet):
@@ -33,8 +33,7 @@ def user_login(request):
     if request.POST.get('eat_date'):
         eat_date = request.POST.get('eat_date')
     else:
-        eat_date = datetime.date
-
+        eat_date = date.today()
     eat_rainbow_object = EatRainbowActivity.objects.filter(date=eat_date, user=user)
     if not eat_rainbow_object:
         prev_date = get_previous_date(eat_date)
