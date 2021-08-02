@@ -22,7 +22,6 @@ from.views import UserApiViewSet
 router = DefaultRouter()
 router.register(r"user-api", UserApiViewSet, basename="user-api")
 urlpatterns = [
-      path('user_login', views.user_login, name="user_login"),
      # path('login_request', views.login_request, name="login_request"),
      # path('health_module', views.health_module, name="health_module"),
      #
