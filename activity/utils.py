@@ -17,4 +17,4 @@ def get_previous_date(date_str):
 def get_difference_from_current_date(date_str):
     date_object = datetime.strptime(date_str, "%Y-%m-%d")
     date = datetime.now() - date_object
-    return date
+    return date.days

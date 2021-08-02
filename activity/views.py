@@ -109,9 +109,9 @@ def eat_rainbow(request):
         if not previous_object_data:
             previous_object_data = EatRainbowActivity.objects.filter(user=user).order_by("date").last()
             previous_date = previous_object_data.date
-            previous_date_object = datetime.strptime(previous_date, "%Y-%m-%d")
-            previous_sequence = previous_object_data.last().master.sequence
-            diffrence_current_date = get_difference_from_current_date(previous_date_object)
+            previous_date_str = previous_date.strftime("%Y-%m-%d")
+            previous_sequence = previous_object_data.master.sequence
+            diffrence_current_date = get_difference_from_current_date(previous_date_str)
             eat_rainbow_master_object = eat_masters.filter(
                 sequence=(previous_sequence + diffrence_current_date)).first()
         else:
