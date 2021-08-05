@@ -1,10 +1,13 @@
 $(document).ready(function(){
-    $.ajax({
+    $("button").click(function(){
+     $.ajax({
         url: "/eat-activity-api/eat-rainbow-details",
-        method: "GET",
+        method: "POST",
         datatype: "json",
         data: { user_id, date : },
         success: {},
+    });
+
     });
 });
 
