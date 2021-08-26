@@ -10,7 +10,7 @@
                <img src="{% static 'assets/images/icons/arrow_left.png' %}" alt="arrow_left_icon" class="arrow_left">
                   <span class="popup_date">
                      {% csrf_token %}
-                     <input type="date" name="eat_date" onchange="this.form.submit()" value="{{eat_date}}">
+                     <input type="date" id = "eat_date" name="eat_date" onchange="this.form.submit()" value="{{eat_date}}">
                   </span>
                <img src="{% static 'assets/images/icons/arrow_right.png' %}" alt="arrow_right_icon" class="arrow_right">
             </p>
@@ -30,33 +30,33 @@
                <p class="add_new_servings">Add New Servings</p>
                <div class="numbers_section">
                   <img src="{% static 'assets/images/icons/plus.png' %}" alt="plus_icon" class="plus">
-                  <p class="number_2">{{eat_rainbow_object.red_serving}} </p>
+                  <p id = "red_serving" class="number_2">{{eat_rainbow_object.red_serving}} </p>
                   <img src="{% static 'assets/images/icons/minus.png' %}" alt="minus_icon" class="minus">
 
                </div>
                <div class="numbers_section">
                   <img src="{% static 'assets/images/icons/plus.png' %}" alt="plus_icon" class="plus">
-                  <p class="number_1">{{eat_rainbow_object.cream_serving}}</p>
+                  <p id = "cream_serving" class="number_1">{{eat_rainbow_object.cream_serving}}</p>
                   <img src="{% static 'assets/images/icons/minus.png' %}" alt="minus_icon" class="minus">
                </div>
                <div class="numbers_section">
                   <img src="{% static 'assets/images/icons/plus.png' %}" alt="plus_icon" class="plus">
-                  <p class="number_0">{{eat_rainbow_object.yellow_serving}}</p>
+                  <p id = "yellow_serving" class="number_0">{{eat_rainbow_object.yellow_serving}}</p>
                   <img src="{% static 'assets/images/icons/minus.png' %}" alt="minus_icon" class="minus">
                </div>
                <div class="numbers_section">
                   <img src="{% static 'assets/images/icons/plus.png' %}" alt="plus_icon" class="plus">
-                  <p class="second_number_2">{{eat_rainbow_object.kiwi_serving}}</p>
+                  <p id = "kiwi_serving" class="second_number_2">{{eat_rainbow_object.kiwi_serving}}</p>
                   <img src="{% static 'assets/images/icons/minus.png' %}" alt="minus_icon" class="minus">
                </div>
                <div class="numbers_section">
                   <img src="{% static 'assets/images/icons/plus.png' %}" alt="plus_icon" class="plus">
-                  <p class="second_number_0">{{eat_rainbow_object.blue_serving}}</p>
+                  <p id = "blue_serving" class="second_number_0">{{eat_rainbow_object.blue_serving}}</p>
                  <img src="{% static 'assets/images/icons/minus.png' %}" alt="minus_icon" class="minus">
                </div>
                <div class="numbers_section">
                   <img src="{% static 'assets/images/icons/plus.png' %}" alt="plus_icon" class="plus">
-                  <p class="third_number_0">{{eat_rainbow_object.green_serving}}</p>
+                  <p id = "green_serving" class="third_number_0">{{eat_rainbow_object.green_serving}}</p>
                   <img src="{% static 'assets/images/icons/minus.png' %}" alt="minus_icon" class="minus">
                </div>
                <form class="popup_window_form">

@@ -30,7 +30,7 @@ class EatActivityApiViewSet(viewsets.ModelViewSet):
     def get_eating_habit_by_date(self, request):
         """
         1. Need users tag
-        2. match those with eatMaster data to get a query set
+        2. match thos   e with eatMaster data to get a query set
         3. match order with activity users previous date
 
 
@@ -111,7 +111,6 @@ def eat_rainbow(request):
             eat_masters = EatRainbowMaster.objects.filter(tag__id__in=user_tag).distinct().order_by("sequence")
             # todo handle previous date not exist
             # for the first time user is assigned to which sequence?
-
             if not previous_object_data:
                 previous_object_data = EatRainbowActivity.objects.filter(user=user).order_by("date").last()
                 previous_date = previous_object_data.date
@@ -146,6 +145,17 @@ def eat_rainbow(request):
             eat_rainbow_object = eat_rainbow_object.first()
 
     return render(request, "main.html", {"eat_date": eat_date, "eat_rainbow_object": eat_rainbow_object})
+
+
+def eat_rainbow_update(request):
+    eat_date = request.POST.get('eat_date')
+    user_id = request.POST.get('user_id')
+    red_serving = request.POST.get('red_serving')
+    cream_serving = request.POST.get('cream_serving')
+    yellow_serving = request.POST.get('yellow_serving')
+    kiwi_serving = request.POST.get('kiwi_serving')
+    blue_serving = request.POST.get('blue_serving')
+    green_serving = request.POST.get('green_serving')
 
 # Exercise Activity
 
