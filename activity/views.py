@@ -1,4 +1,6 @@
 import datetime
+from femispace.settings import LOGIN_REDIRECT_URL
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -90,6 +92,7 @@ class EatActivityApiViewSet(viewsets.ModelViewSet):
         return Response(response_data)
 
 
+@login_required(login_url=LOGIN_REDIRECT_URL)
 def eat_rainbow(request):
     user = request.user
     use_id = user.id
